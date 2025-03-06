@@ -1,13 +1,15 @@
 import Navbar from "@/components/navbar";
-import { ReactNode } from "react";
+import { ThemeProvider } from "@/context/ThemeContext";
 
-export default function Settings({ children }: { children: ReactNode }) {
+export default function Settings() {
 
 
   return (
     <>
+    <ThemeProvider>
     <Navbar />
-    <main>{children}</main>
+    <main></main>
+    </ThemeProvider>
     </>
   );
 }
