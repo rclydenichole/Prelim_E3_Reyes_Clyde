@@ -44,7 +44,7 @@ export default function Navbar() {
             </button>
             
             {/* Desktop Navigation */}
-            <Link href="/profile" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+            <Link href="/settings2" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
               <UserCircle className="h-6 w-6" />
             </Link>
             <Link href="/settings" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
@@ -84,7 +84,7 @@ export default function Navbar() {
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           <div className="flex space-x-2 px-3 py-2">
-            <Link href="/profile" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition flex items-center">
+            <Link href="/settings2" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition flex items-center">
               <UserCircle className="h-6 w-6" />
               <span className="ml-2">Profile</span>
             </Link>
