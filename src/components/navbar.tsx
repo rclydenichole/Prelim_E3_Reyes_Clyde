@@ -10,21 +10,23 @@ interface NavbarProps {
   siteName?: string;
 }
 
-export default function Navbar({ siteName = "Clyde Nichole Reyes" }: NavbarProps) {
+export default function Navbar({ siteName }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [localSiteName, setLocalSiteName] = useState(siteName);
+  const [localSiteName, setLocalSiteName] = useState("");
 
   useEffect(() => {
-    setLocalSiteName(siteName);
-  }, [siteName]);
-
-  useEffect(() => {
-    const savedSiteName = localStorage.getItem("siteName");
-    if (savedSiteName) {
-      setLocalSiteName(savedSiteName);
+    if (siteName) {
+      setLocalSiteName(siteName);
+    } else {
+      const savedSiteName = localStorage.getItem("siteName");
+      if (savedSiteName) {
+        setLocalSiteName(savedSiteName);
+      } else {
+        setLocalSiteName("Clyde Nichole Reyes");
+      }
     }
-  }, []);
+  }, [siteName]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

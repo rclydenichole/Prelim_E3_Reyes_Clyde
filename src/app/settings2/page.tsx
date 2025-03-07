@@ -6,12 +6,21 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { UserCircle } from "lucide-react";
 
 export default function Profile() {
-  const [siteName, setSiteName] = useState("Clyde Nichole Reyes");
+  const [siteName, setSiteName] = useState("");
   const [profileUrl, setProfileUrl] = useState("");
   const [imageError, setImageError] = useState(false); //for when the image is invalid
 
   useEffect(() => {
+    const savedSiteName = localStorage.getItem("siteName");
     const savedProfileUrl = localStorage.getItem("profileUrl");
+
+    if (savedSiteName) {
+      setSiteName(savedSiteName);
+    } else {
+      setSiteName("Clyde Nichole Reyes");
+      localStorage.setItem("siteName", "Clyde Nichole Reyes");
+    }
+    
     if (savedProfileUrl) {
       setProfileUrl(savedProfileUrl);
     }
@@ -86,7 +95,7 @@ export default function Profile() {
                     placeholder="Enter image URL"
                   />
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                    Enter a valid image URL to update your profile picture.
+                    Enter a valid image URL to update your profile picture. Don&apos;t worry, the image will load automatically.
                   </p>
                   {imageError && (
                     <p className="text-sm text-red-500 mt-1">
