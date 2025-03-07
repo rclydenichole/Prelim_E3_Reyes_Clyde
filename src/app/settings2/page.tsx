@@ -121,6 +121,7 @@ function ProfilePicture({ url, onImageError }: ProfilePictureProps) {
   return (
     <div className="relative w-24 h-24 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 border-4 border-white dark:border-gray-800 shadow-lg">
       {url ? (
+        // eslint-disable-next-line @next/next/no-img-element
         <img 
           src={url} 
           alt="Profile" 

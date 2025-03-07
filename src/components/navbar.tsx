@@ -2,7 +2,7 @@
 // First, update your Navbar component to include the dark mode toggle
 // components/Navbar.jsx
 import Link from 'next/link';
-import { UserCircle, Settings, Home, Menu, X, Sun, Moon } from 'lucide-react';
+import { UserCircle, Settings, Home, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -12,7 +12,7 @@ interface NavbarProps {
 
 export default function Navbar({ siteName }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  useTheme();
   const [localSiteName, setLocalSiteName] = useState("");
 
   useEffect(() => {
@@ -32,10 +32,6 @@ export default function Navbar({ siteName }: NavbarProps) {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
   return (
     <nav className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white shadow-lg transition-colors duration-200">
       <div className="max-w-6xl mx-auto px-4">
@@ -46,44 +42,19 @@ export default function Navbar({ siteName }: NavbarProps) {
               <span className="font-bold text-xl">{localSiteName}</span>
             </Link>
           </div>
-
-        {/* Theme Toggle */}
-          <div className="hidden md:flex items-center space-x-2">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="h-6 w-6" />
-              ) : (
-                <Moon className="h-6 w-6" />
-              )}
-            </button>
             
             {/* Desktop Navigation */}
-            <Link href="/settings2" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-              <UserCircle className="h-6 w-6" />
-            </Link>
-            <Link href="/settings" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-              <Settings className="h-6 w-6" />
-            </Link>
-          </div>
+            <div className="hidden md:flex items-center space-x-2">
+              <Link href="/settings2" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <UserCircle className="h-6 w-6" />
+              </Link>
+              <Link href="/settings" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <Settings className="h-6 w-6" />
+              </Link>
+            </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={toggleTheme}
-              className="p-2 mr-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="h-6 w-6" />
-              ) : (
-                <Moon className="h-6 w-6" />
-              )}
-            </button>
-            
+          <div className="md:hidden flex items-center">   
             <button 
               onClick={toggleMenu}
               className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none"
