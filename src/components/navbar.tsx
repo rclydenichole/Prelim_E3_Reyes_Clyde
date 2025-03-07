@@ -3,12 +3,28 @@
 // components/Navbar.jsx
 import Link from 'next/link';
 import { UserCircle, Settings, Home, Menu, X, Sun, Moon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 
-export default function Navbar() {
+interface NavbarProps {
+  siteName?: string;
+}
+
+export default function Navbar({ siteName = "Clyde Nichole Reyes" }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [localSiteName, setLocalSiteName] = useState(siteName);
+
+  useEffect(() => {
+    setLocalSiteName(siteName);
+  }, [siteName]);
+
+  useEffect(() => {
+    const savedSiteName = localStorage.getItem("siteName");
+    if (savedSiteName) {
+      setLocalSiteName(savedSiteName);
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,7 +41,7 @@ export default function Navbar() {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center">
               <Home className="h-6 w-6 mr-2" />
-              <span className="font-bold text-xl">Clyde Nichole Reyes</span>
+              <span className="font-bold text-xl">{localSiteName}</span>
             </Link>
           </div>
 
